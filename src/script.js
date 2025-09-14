@@ -29,11 +29,16 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(sizes.width, sizes.height);
 
+let time = Date.now();
 // Animations
 const rotate = () => {
+  const currentTime = Date.now();
+  const deltaTime = currentTime - time;
+  time = currentTime
+
   // Update objects
-  mesh.rotation.y += 0.01;
-  mesh.rotation.x += 0.01;
+  mesh.rotation.y += deltaTime * 0.001;
+  mesh.rotation.x += deltaTime * 0.001;
 
   // Render
   renderer.render(scene, camera);
